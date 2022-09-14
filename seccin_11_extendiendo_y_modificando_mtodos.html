@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="exe_highlighter.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>Sección 1.1: Extendiendo y modificando métodos | Herencia y Polimorfismo </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Eduvirtual UNAB" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.7 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="exe_highlighter.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-2"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Herencia y Polimorfismo</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">Inicio</a></li>
+   <li class="current-page-parent"><a href="tema_1_herencia.html" class="current-page-parent daddy">Tema 1: Herencia</a>
+   <ul>
+      <li id="active"><a href="seccin_11_extendiendo_y_modificando_mtodos.html" class="active no-ch">Sección 1.1: Extendiendo y modificando métodos</a></li>
+      <li><a href="seccin_12_herencia_simple_y_multiple.html" class="no-ch">Sección 1.2: Herencia Simple y Multiple</a></li>
+   </ul>
+   </li>
+   <li><a href="tema_2_polimorfismo.html" class="daddy">Tema 2: Polimorfismo</a>
+   <ul class="other-section">
+      <li><a href="seccin_21_ejemplo_de_polimorfismo.html" class="no-ch">Sección 2.1: Ejemplo de Polimorfismo</a></li>
+   </ul>
+   </li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="tema_1_herencia.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="seccin_12_herencia_simple_y_multiple.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">Sección 1.1: Extendiendo y modificando métodos</h1></header>
+<article class="iDevice_wrapper FreeTextIdevice" id="id5">
+<div class="iDevice emphasis0">
+<div id="ta5_86" class="block iDevice_content">
+<p style="text-align: justify;"><span style="font-size: 14pt;">Vamos a continuemos con nuestro ejemplo de gatos y animales. En esta ocasión vamos a definir una clase padre Animal que tendrá todos los atributos y métodos genéricos que los animales pueden tener. Esta tarea de buscar el denominador común es muy importante en programación. Veamos una posible lista de los atributos:</span></p>
+<ul style="text-align: justify;">
+<li><span style="font-size: 14pt;">Tenemos la especie ya que todos los animales pertenecen a una.</span></li>
+<li><span style="font-size: 14pt;">La edad, ya que todo ser vivo nace, crece, se reproduce y muere.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-size: 14pt;">Y la lista de los métodos o funcionalidades:</span></p>
+<ul style="text-align: justify;">
+<li><span style="font-size: 14pt;">Tendremos el método hablar, que cada animal implementará de una forma. Los perros ladran, las abejas zumban y los caballos relinchan.</span></li>
+<li><span style="font-size: 14pt;">Un método moverse. Unos animales lo harán caminando, otros volando.</span></li>
+<li><span style="font-size: 14pt;">Por último un método descríbeme que será común.</span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-size: 14pt;">Definimos la clase padre, con una serie de atributos comunes para todos los animales como hemos indicado.</span></p>
+<div class="highlighted-code code-style-2 language-python line-numbers">
+<div>
+<div class="highlighted-code code-style-2 language-python line-numbers">
+<div>
+<pre><code>class Animal:
+    def __init__(self, especie, edad):
+        self.especie = especie
+        self.edad = edad
+
+    # Método genérico pero con implementación particular
+    def hablar(self):
+        # Método vacío
+        pass
+
+    # Método genérico pero con implementación particular
+    def moverse(self):
+        # Método vacío
+        pass
+
+    # Método genérico con la misma implementación
+    def describeme(self):
+        print("Soy un Animal del tipo", type(self).__name__)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p style="text-align: justify;"><span style="font-size: 14pt;">Tenemos una clase genérica Animal, que generaliza las características y funcionalidades que todo animal puede tener. Ahora creamos una clase Gato que hereda del Animal. </span></p>
+<div class="highlighted-code code-style-2 language-python line-numbers">
+<div>
+<pre><code># Perro hereda de Animal
+class Perro(Animal):
+    pass</code></pre>
+</div>
+</div>
+<p><span style="font-size: 14pt;">Hemos creado una clase nueva que tiene todo el contenido que la clase padre tiene, pero aquí viene lo que es de verdad interesante. Vamos a crear varios animales concretos y sobreescrbir algunos de los métodos que habían sido definidos en la clase Animal, como el hablar o el moverse, ya que cada animal se comporta de una manera distinta. Podemos incluso crear nuevos métodos que se añadirán a los ya heredados.</span></p>
+<div class="highlighted-code code-style-2 language-python line-numbers">
+<div>
+<pre><code>class Perro(Animal):
+    def hablar(self):
+        print("Guau!")
+    def moverse(self):
+        print("Caminando con 4 patas")
+
+class Vaca(Animal):
+    def hablar(self):
+        print("Muuu!")
+    def moverse(self):
+        print("Caminando con 4 patas")
+
+class Abeja(Animal):
+    def hablar(self):
+        print("Bzzzz!")
+    def moverse(self):
+        print("Volando")</code></pre>
+</div>
+</div>
+<p></p>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="tema_1_herencia.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="seccin_12_herencia_simple_y_multiple.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<script type="text/javascript" src="_style_js.js"></script></body></html>
